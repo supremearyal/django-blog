@@ -38,21 +38,6 @@ def show_entry(request, entry_id):
     context_dict = {'entry': entry, 'comments': comments, 'form': form}
     return render_to_response('entries/entry.html', context_dict, context)
 
-def create_comment(request, entry_id):
-    context = RequestContext(request)
-    if request.method == 'POST':
-        form = CommentForm(request.POST)
-
-        if form.is_valid():
-            entry_id = form.save().entry.id
-
-            return redirect('show_entry', entry_id)
-        else:
-            entry = get_entry(entry_id)
-            comments = get_comments(entry)
-            context_dict = {'entry': entry, 'comments': comments, 'form': form}
-            return render_to_response('entries/entry.html', context_dict, context)
-
 def create_entry(request):
     context = RequestContext(request)
 
