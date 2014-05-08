@@ -1,0 +1,36 @@
+{% extends "entries/base.html" %}
+
+{% block title %}{{ entry.title }}{% endblock %}
+
+{% block content %}
+    <div class="blog-entry">
+        <h1>{{ entry.title }}</h1>
+        <em>Published on: {{ entry.pub_date }}</em>
+        <p>{{ entry.body }}</h1>
+    </div>
+
+    <hr>
+    <h2>Comments</h2>
+    <form method="POST" action="/entries/entry/{{ entry.id }}/">
+        {% csrf_token %}
+
+        {% for field in form.visible_fields %}
+            {{ field.errors }}
+            {{ field.help_text }}
+            <br/>
+            {{ field }}
+            <br/>
+        {% endfor %}
+
+        <input type="submit" value="Post comment"/>
+    </form>
+
+    <br/>
+
+    {% for comment in comments %}
+        <div class="comment-entry">
+            <p><em>{{ comment.username }}&nbsp;</em> commented on {{ comment.pub_date }}</p>
+            <p>{{ comment.content }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "entries/base.html" %}
+
+{% block title %}All blog entries{% endblock %}
+
+{% block content %}
+    <h1>All Blog Posts</h1>
+    {% for entry in entries %}
+        <div class="blog-entry">
+            <h2><a href="/entries/entry/{{ entry.id }}">{{ entry.title }}</a></h2>
+            <em> Posted on {{ entry.pub_date }}</em>
+
+            <p>{{ entry.body }}</p>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

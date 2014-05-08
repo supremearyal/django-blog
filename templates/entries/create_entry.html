@@ -1,0 +1,21 @@
+{% extends "entries/base.html" %}
+
+{% block title %}Create a new blog post{% endblock %}
+
+{% block content %}
+    <h1>New blog post</h1>
+
+    <form method="POST" action="/entries/entry/add/">
+        {% csrf_token %}
+
+        {% for field in form.visible_fields %}
+            {{ field.errors }}
+            {{ field.help_text }}
+            <br/>
+            {{ field }}
+            <br/>
+        {% endfor %}
+
+        <input type="submit" name="submit" value="Post"/>
+    </form>
+{% endblock %}

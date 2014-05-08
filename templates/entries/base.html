@@ -1,0 +1,24 @@
+<!doctype html>
+
+{% load static %}
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}{% endblock %}</title>
+        <link href="{% static "css/style.css" %}" rel="stylesheet"/>
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel='stylesheet'/>
+    </head>
+    <body>
+        <div class="nav-header">
+            <ul>
+                <li><a href="/entries">Home</a></li>
+                <li><a href="/entries/entry/add">New post</a></li>
+            </ul>
+        </div>
+        <div class="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>
