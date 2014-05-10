@@ -26,9 +26,9 @@ body {
 
 a {
     color: gray;
+    text-decoration: none;
 }
 
 .nav-header > ul > li > a {
-    text-decoration: none;
     font-weight: bold;
 }

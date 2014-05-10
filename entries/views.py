@@ -12,6 +12,9 @@ def get_entries():
 def get_comments(entry):
     return Comment.objects.filter(entry=entry).order_by('-pub_date')
 
+def home(request):
+    return redirect('index')
+
 def index(request):
     context = RequestContext(request)
     context_dict = {'entries': get_entries()}
@@ -27,7 +30,7 @@ def show_entry(request, entry_id):
             comment.entry = get_entry(entry_id)
             comment.save()
 
-            return redirect('show_entry',  entry_id)
+            return redirect('show_entry', entry_id)
         else:
             print form.errors
     else:
