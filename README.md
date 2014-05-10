@@ -6,11 +6,15 @@ How to run
 
 Create database (uses sqlite3 by default).
 
+```
   $ python manage.py syncdb
+```
 
 Run server
 
+```
   $ python manage.py runserver
+```
 
 The application should be running in localhost:8000.
 
