@@ -48,7 +48,7 @@ def create_entry(request):
         form = EntryForm(request.POST)
 
         if form.is_valid():
-            new_id = form.save().id
+            new_id = form.save().pk
 
             return redirect('entry-show', new_id)
     else:

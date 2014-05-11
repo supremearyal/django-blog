@@ -11,7 +11,7 @@
 
     <hr>
     <h2>Comments</h2>
-    <form method="POST" action="/entries/entry/{{ entry.id }}/">
+        <form method="POST" action="{{ request.get_full_path }}">
         {% csrf_token %}
 
         {% for field in form.visible_fields %}
