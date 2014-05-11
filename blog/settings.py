@@ -1,5 +1,6 @@
 # Django settings for blog project.
 import os
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
 
 SETTINGS_DIR = os.path.dirname(__file__)
 PROJECT_PATH = os.path.join(SETTINGS_DIR, os.pardir)
@@ -169,3 +170,8 @@ LOGGING = {
         },
     }
 }
+
+TEMPLATE_CONTEXT_PROCESSORS += (
+    # So templates can refer to request.
+    'django.core.context_processors.request',
+)
