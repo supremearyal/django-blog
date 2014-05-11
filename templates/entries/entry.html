@@ -4,7 +4,7 @@
 
 {% block content %}
     <div class="blog-entry">
-        <h1>{{ entry.title }}</h1>
+        <h1>{{ entry.title }} - <a href="{% url entry-edit entry.pk %}">Edit</a></h1>
         <em>Published on: {{ entry.pub_date }}</em>
         <p>{{ entry.body }}</h1>
     </div>

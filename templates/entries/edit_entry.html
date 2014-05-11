@@ -1,0 +1,9 @@
+{% extends "entries/base.html" %}
+
+{% block title %}Editing post - {{ form.title.value }}{% endblock %}
+
+{% block content %}
+    <h1>Edit blog post - {{ form.title.value }}</h1>
+
+    {% include "entries/entry_form.html" %}
+{% endblock %}

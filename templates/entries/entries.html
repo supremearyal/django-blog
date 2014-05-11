@@ -6,7 +6,7 @@
     <h1>All Blog Posts</h1>
     {% for entry in entries %}
         <div class="blog-entry">
-            <h2><a href="/entries/entry/{{ entry.id }}">{{ entry.title }}</a></h2>
+            <h2><a href="{% url entry-show entry.pk %}">{{ entry.title }}</a></h2>
             <em> Posted on {{ entry.pub_date }}</em>
 
             <p>{{ entry.body }}</p>

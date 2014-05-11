@@ -13,7 +13,7 @@ def get_comments(entry):
     return Comment.objects.filter(entry=entry).order_by('-pub_date')
 
 def home(request):
-    return redirect('index')
+    return redirect('entries-all')
 
 def index(request):
     context = RequestContext(request)
@@ -30,7 +30,7 @@ def show_entry(request, entry_id):
             comment.entry = get_entry(entry_id)
             comment.save()
 
-            return redirect('show_entry', entry_id)
+            return redirect('entry-show', entry_id)
         else:
             print form.errors
     else:
@@ -50,8 +50,26 @@ def create_entry(request):
         if form.is_valid():
             new_id = form.save().id
 
-            return redirect('show_entry', new_id)
+            return redirect('entry-show', new_id)
     else:
         form = EntryForm()
 
-    return render_to_response('entries/create_entry.html', {'form' : form}, context)
+    context_dict = {'form': form}
+    return render_to_response('entries/create_entry.html', context_dict, context)
+
+def edit_entry(request, entry_id):
+    context = RequestContext(request)
+
+    if request.method == 'POST':
+        entry = get_entry(int(entry_id))
+        form = EntryForm(instance=entry, data=request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('entry-show', entry_id)
+    else:
+        entry = get_entry(int(entry_id))
+        form = EntryForm(instance=entry)
+
+    context_dict = {'form': form}
+    return render_to_response('entries/edit_entry.html', context_dict, context)
